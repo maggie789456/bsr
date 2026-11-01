@@ -1,0 +1,2265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>市场需求款式集合</title>
+<style>
+  :root{
+    --paper:#f4f1ea;
+    --card:#fffdf9;
+    --ink:#14161a;
+    --ink-2:#4a4b50;
+    --line:#dcd6c8;
+    --accent:#c0442b;
+    --accent-soft:#f0dcd5;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(circle at 15% -10%, #fff 0%, transparent 55%),
+      radial-gradient(circle at 95% 0%, #efe9dc 0%, transparent 45%);
+    background-attachment:fixed;
+  }
+  ::selection{background:var(--accent);color:#fff}
+
+  /* ---------- header ---------- */
+  header{
+    padding:56px 32px 26px;
+    max-width:1420px;margin:0 auto;
+  }
+  .kicker{
+    font-size:11px;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--accent);font-weight:700;margin-bottom:18px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .kicker::after{content:"";height:1px;flex:1;background:var(--line)}
+  h1{
+    font-family:"Songti SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    font-size:clamp(34px,5.4vw,66px);
+    line-height:1.02;margin:0;font-weight:600;letter-spacing:-.02em;
+  }
+  h1 em{font-style:italic;color:var(--accent)}
+  .sub{
+    margin-top:18px;max-width:640px;color:var(--ink-2);
+    font-size:14px;line-height:1.85;
+  }
+  .toolbar{
+    margin-top:30px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:14px 0;
+  }
+  .count{
+    font-family:"Songti SC",Georgia,serif;font-size:15px;letter-spacing:.04em;
+  }
+  .count b{font-size:26px;color:var(--accent);margin:0 4px;font-weight:600}
+  .spacer{flex:1}
+  .find{
+    display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--ink);
+    padding:4px 2px;min-width:230px;
+  }
+  .find span{font-size:12px;letter-spacing:.18em;color:var(--ink-2)}
+  .find input{
+    border:0;background:transparent;outline:none;font-size:14px;color:var(--ink);
+    font-family:inherit;padding:4px 0;width:100%;
+  }
+
+  /* ---------- grid ---------- */
+  main{max-width:1420px;margin:0 auto;padding:34px 32px 20px}
+  .grid{
+    display:grid;gap:26px;
+    grid-template-columns:repeat(auto-fill,minmax(268px,1fr));
+  }
+  .card{
+    background:var(--card);border:1px solid var(--line);
+    display:flex;flex-direction:column;
+    opacity:0;transform:translateY(14px);
+    transition:opacity .5s ease,transform .5s ease,box-shadow .3s ease,border-color .3s ease;
+  }
+  .card.in{opacity:1;transform:none}
+  .card:hover{box-shadow:0 18px 40px -22px rgba(20,22,26,.45);border-color:#c9c1b1}
+  .media{
+    position:relative;aspect-ratio:3/4;overflow:hidden;background:#eae5da;cursor:zoom-in;
+  }
+  .media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.22,.61,.36,1)}
+  .card:hover .media img{transform:scale(1.035)}
+  .no{
+    position:absolute;top:10px;left:10px;z-index:2;
+    font-size:10px;letter-spacing:.14em;font-variant-numeric:tabular-nums;
+    background:rgba(20,22,26,.78);color:#fff;padding:3px 7px;
+  }
+  .ar{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:2;
+    width:30px;height:30px;border:0;border-radius:50%;
+    background:rgba(255,253,249,.92);color:var(--ink);
+    font-size:17px;line-height:1;cursor:pointer;opacity:0;transition:opacity .25s, background .2s;
+    display:grid;place-items:center;padding-bottom:2px;
+  }
+  .ar.l{left:8px}.ar.r{right:8px}
+  .media:hover .ar{opacity:1}
+  .ar:hover{background:#fff;color:var(--accent)}
+  .dots{position:absolute;bottom:9px;left:0;right:0;display:flex;gap:5px;justify-content:center;z-index:2}
+  .dots i{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.55);transition:.25s}
+  .dots i.on{background:#fff;width:14px;border-radius:3px}
+
+  .body{padding:14px 15px 16px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .idrow{display:flex;align-items:center;gap:8px}
+  .lbl{font-size:10px;letter-spacing:.16em;color:var(--ink-2);white-space:nowrap}
+  .idv{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:12.5px;background:#f2eee4;padding:3px 6px;color:var(--ink);
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;
+  }
+  .copy{
+    border:1px solid var(--ink);background:transparent;color:var(--ink);
+    font-size:11px;padding:4px 9px;cursor:pointer;font-family:inherit;letter-spacing:.06em;
+    transition:.2s;white-space:nowrap;
+  }
+  .copy:hover{background:var(--ink);color:#fff}
+  .copy.ok{background:var(--accent);border-color:var(--accent);color:#fff}
+  .hint{
+    margin:0;font-size:11px;color:var(--accent);line-height:1.55;
+    padding-left:10px;border-left:2px solid var(--accent-soft);
+  }
+  .paths{border-top:1px dashed var(--line);padding-top:10px;display:flex;flex-direction:column;gap:8px}
+  .prow{display:flex;gap:7px;align-items:flex-start}
+  .tag{
+    font-size:9.5px;letter-spacing:.1em;background:#eee8da;color:var(--ink-2);
+    padding:2px 5px;white-space:nowrap;margin-top:1px;
+  }
+  .ptext{
+    margin:0;font-size:10.5px;line-height:1.6;color:var(--ink-2);flex:1;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .pcopy{
+    border:0;background:transparent;color:#9a9486;cursor:pointer;font-size:13px;
+    padding:0 1px;line-height:1.3;transition:.2s;
+  }
+  .pcopy:hover{color:var(--accent)}
+  .acts{display:flex;gap:8px;margin-top:auto;padding-top:4px;position:relative}
+  .btn{
+    flex:1;border:1px solid var(--ink);background:var(--ink);color:#fff;
+    font-family:inherit;font-size:12.5px;letter-spacing:.08em;padding:10px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;gap:6px;transition:.22s;
+  }
+  .btn b{font-weight:400;font-size:15px;line-height:1}
+  .btn:hover{background:var(--accent);border-color:var(--accent)}
+  .menu{
+    position:absolute;right:0;bottom:calc(100% + 6px);background:#fff;border:1px solid var(--line);
+    box-shadow:0 16px 34px -18px rgba(20,22,26,.5);display:none;flex-direction:column;min-width:150px;z-index:8;
+  }
+  .menu.show{display:flex}
+  .menu a{
+    padding:9px 12px;font-size:12px;color:var(--ink);text-decoration:none;
+    border-bottom:1px solid #f0ece2;transition:.15s;
+  }
+  .menu a:last-child{border-bottom:0}
+  .menu a:hover{background:#f6f2e8;color:var(--accent)}
+
+  /* ---------- lightbox ---------- */
+  .lb{
+    position:fixed;inset:0;z-index:100;background:rgba(12,13,15,.95);
+    display:none;align-items:center;justify-content:center;padding:4vh 4vw;
+    backdrop-filter:blur(6px);
+  }
+  .lb.on{display:flex}
+  .lb img{max-width:min(90vw,760px);max-height:84vh;object-fit:contain;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+  .lb .nav{
+    position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;
+    border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.06);color:#fff;
+    font-size:24px;cursor:pointer;display:grid;place-items:center;transition:.2s;
+  }
+  .lb .nav:hover{background:#fff;color:#111}
+  .lb .prev{left:2.5vw}.lb .next{right:2.5vw}
+  .lb .cap{
+    position:absolute;bottom:3vh;left:0;right:0;text-align:center;color:#cfcabd;
+    font-size:11.5px;letter-spacing:.18em;font-family:ui-monospace,Menlo,monospace;
+  }
+  .lb .x{
+    position:absolute;top:3vh;right:3vw;background:transparent;border:1px solid rgba(255,255,255,.3);
+    color:#fff;width:36px;height:36px;cursor:pointer;font-size:16px;transition:.2s;
+  }
+  .lb .x:hover{background:#fff;color:#111}
+
+  /* ---------- footer ---------- */
+  footer{max-width:1420px;margin:40px auto 0;padding:26px 32px 60px;border-top:1px solid var(--line)}
+  .disc{
+    border:1px solid var(--line);background:#fffdf7;padding:20px 22px;
+  }
+  .disc h3{
+    margin:0 0 10px;font-size:12px;letter-spacing:.24em;color:var(--accent);font-weight:700;
+  }
+  .disc p{margin:0;font-size:12px;line-height:1.95;color:var(--ink-2)}
+  .disc p + p{margin-top:6px}
+
+  .toast{
+    position:fixed;left:50%;bottom:38px;transform:translate(-50%,20px);
+    background:var(--ink);color:#fff;font-size:12.5px;letter-spacing:.08em;
+    padding:11px 20px;opacity:0;pointer-events:none;transition:.3s;z-index:200;
+  }
+  .toast.on{opacity:1;transform:translate(-50%,0)}
+
+  @media (max-width:640px){
+    header{padding:34px 18px 20px}
+    main{padding:22px 18px 10px}
+    .grid{gap:18px;grid-template-columns:repeat(2,1fr)}
+    .body{padding:11px 11px 13px;gap:8px}
+    .idv{font-size:10.5px}
+    .copy{font-size:10px;padding:3px 6px}
+    .ptext{font-size:9.5px}
+    .btn{font-size:11.5px;padding:9px 4px}
+    footer{padding:20px 18px 44px}
+    .lb .nav{width:38px;height:38px;font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="kicker">Style Reference Library · 市场需求</div>
+  <h1>市场需求<i>款式集合</i></h1>
+  <p class="sub">按款式浏览在售参考图，点击图片可放大查看多张轮播图；复制款式编号发给【麦杞岐】下单或跟款，复制类目路径可直接用于添加类目。</p>
+  <div class="toolbar">
+    <div class="count">共<b id="cnt">0</b>款</div>
+    <div class="spacer"></div>
+    <label class="find"><span>编号</span><input id="q" type="text" placeholder="输入款式编号筛选" autocomplete="off"></label>
+  </div>
+</header>
+
+<main>
+  <div class="grid" id="grid">
+
+    <article class="card" data-id="m250808210092">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">01</span>
+        <img src="https://img.ltwebstatic.com/v4/j/pi/2026/08/10/e3/178632985520f0eb1bc4b973859e0015262be7d4a4_thumbnail_750x999.webp" alt="款式 m250808210092" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">m250808210092</code>
+          <button class="copy" data-copy="m250808210092">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="m2603131659895450">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">02</span>
+        <img src="https://img.ltwebstatic.com/v4/j/pi/2026/07/13/34/1783914437e3787e1b0cb68925eabb30eb826f5c1e_thumbnail_900x.webp" alt="款式 m2603131659895450" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">m2603131659895450</code>
+          <button class="copy" data-copy="m2603131659895450">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="m250522480660">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">03</span>
+        <img src="https://img.ltwebstatic.com/v4/j/smartflow/2026/09/15/ff/17894353778a88c20c0da7feb92287e15097a63bcc_thumbnail_750x999.webp" alt="款式 m250522480660" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">m250522480660</code>
+          <button class="copy" data-copy="m250522480660">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="m2607241446008673">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">04</span>
+        <img src="https://img.ltwebstatic.com/v4/j/smartflow/2026/09/09/06/1788939205332dc49f8053a6f7519edbde864c2586_thumbnail_900x.webp" alt="款式 m2607241446008673" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">m2607241446008673</code>
+          <button class="copy" data-copy="m2607241446008673">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="m2608251400077986">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">05</span>
+        <img src="https://img.ltwebstatic.com/v4/j/dps/PS202610100424/7d2f19ba877408cc9c3e7f07316357b10447d6751cd9a9496e5974724f578a8b_thumbnail_750x999.webp" alt="款式 m2608251400077986" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">m2608251400077986</code>
+          <button class="copy" data-copy="m2608251400077986">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="m2607211415320760">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">06</span>
+        <img src="https://img.ltwebstatic.com/v4/j/smartflow/2026/08/25/d0/17876392502aaa137f53ecd35347dd7dadf4e97b78_thumbnail_750x999.webp" alt="款式 m2607211415320760" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">m2607211415320760</code>
+          <button class="copy" data-copy="m2607211415320760">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="m2608071318957847">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">07</span>
+        <img src="https://img.ltwebstatic.com/v4/j/smartflow/2026/09/04/b6/17885168263bfd86cb3bd12ed28cbe0ca9e1c3a02f_thumbnail_750x999.webp" alt="款式 m2608071318957847" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">m2608071318957847</code>
+          <button class="copy" data-copy="m2608071318957847">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="m250805386616">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">08</span>
+        <img src="https://img.ltwebstatic.com/v4/j/dps/PS2026092214864/04a9b320a2990cd104d9b1d09f1b943ab4a1a9f8300c6c57e7333446eb8fdc83_thumbnail_750x999.webp" alt="款式 m250805386616" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">m250805386616</code>
+          <button class="copy" data-copy="m250805386616">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="m2608061528278501">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">09</span>
+        <img src="https://img.ltwebstatic.com/v4/j/dps/PS202609235029/2269a1f3ece28ced04fcf20bebe55997d65b8fda33fb6495726893e29e1ecb00_thumbnail_750x999.webp" alt="款式 m2608061528278501" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">m2608061528278501</code>
+          <button class="copy" data-copy="m2608061528278501">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="m2606291944482218">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">10</span>
+        <img src="https://img.ltwebstatic.com/v4/j/pi/2026/07/27/6c/17851342521cd703cb1327da078910c5e8aa7db95d_thumbnail_750x999.webp" alt="款式 m2606291944482218" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">m2606291944482218</code>
+          <button class="copy" data-copy="m2606291944482218">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="m2607021534321115">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">11</span>
+        <img src="https://img.ltwebstatic.com/v4/j/pi/2026/07/23/cf/17847717458d697389b5935d5bf901df5b7cea9bd0_thumbnail_750x999.webp" alt="款式 m2607021534321115" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">m2607021534321115</code>
+          <button class="copy" data-copy="m2607021534321115">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="m2607100954299826">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">12</span>
+        <img src="https://img.ltwebstatic.com/v4/j/dps/PS202608311562/ce2b04ce0f77b0c9efa50c34c6cdc14d6fe190535556cf670298dcd05ebb7b4d_thumbnail_750x999.webp" alt="款式 m2607100954299826" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">m2607100954299826</code>
+          <button class="copy" data-copy="m2607100954299826">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="m250527774654">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">13</span>
+        <img src="https://img.ltwebstatic.com/v4/j/pi/2026/06/11/f9/17811487050f57c934dede535c9b51dd98aa1fd35d_thumbnail_750x999.webp" alt="款式 m250527774654" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">m250527774654</code>
+          <button class="copy" data-copy="m250527774654">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="m24062905502">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">14</span>
+        <img src="https://img.ltwebstatic.com/images3_spmp/2024/07/22/d8/1721634142ef3e8465a6aef54001e5b12106b3ccae_thumbnail_900x.webp" alt="款式 m24062905502" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">m24062905502</code>
+          <button class="copy" data-copy="m24062905502">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="m2510232992162">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">15</span>
+        <img src="https://img.ltwebstatic.com/v4/j/pi/2025/12/10/8a/17653371799faa6db5325833fc7adeb5e24a363c23_thumbnail_900x.webp" alt="款式 m2510232992162" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">m2510232992162</code>
+          <button class="copy" data-copy="m2510232992162">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="m2606081104436326">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">16</span>
+        <img src="https://img.ltwebstatic.com/v4/j/pi/2026/06/29/f1/17826974027ab9c6d671d98a351a93d69347281e39_thumbnail_750x999.webp" alt="款式 m2606081104436326" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">m2606081104436326</code>
+          <button class="copy" data-copy="m2606081104436326">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="m250522699183">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">17</span>
+        <img src="https://img.ltwebstatic.com/v4/j/dps/PS2026081810283/aaf67fe3123a1deda09e3be487190ab277d3621144139987cafb5f93e1ff341b_thumbnail_900x.webp" alt="款式 m250522699183" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">m250522699183</code>
+          <button class="copy" data-copy="m250522699183">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005007601067027">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">18</span>
+        <img src="https://ae01.alicdn.com/kf/Sef8b6d9b05124337befab1e0d8718242J.jpg" alt="款式 1005007601067027" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005007601067027</code>
+          <button class="copy" data-copy="1005007601067027">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="m2610041623243884">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">19</span>
+        <img src="https://img.ltwebstatic.com/v4/j/dps/PS202610042253/938209509c2fdc11f3c4ca60b0b2a438bfad938d513dc570fb8d0d310d47b3fe_thumbnail_750x999.webp" alt="款式 m2610041623243884" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">m2610041623243884</code>
+          <button class="copy" data-copy="m2610041623243884">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="z2610041841921244">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">20</span>
+        <img src="https://img.ltwebstatic.com/v4/j/dps/PS202609169605/f22393d9e1e9a105ea7bd310108a1cc1f0a7c1decfd5f9dfa358027bb25c1793_thumbnail_900x.webp" alt="款式 z2610041841921244" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">z2610041841921244</code>
+          <button class="copy" data-copy="z2610041841921244">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005009508797803">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">21</span>
+        <img src="https://ae01.alicdn.com/kf/Sf53b2ddad7094a8c9bd643ea8ca442136.jpg" alt="款式 1005009508797803" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005009508797803</code>
+          <button class="copy" data-copy="1005009508797803">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005009905897713">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">22</span>
+        <img src="https://ae01.alicdn.com/kf/S6dd829192d0b41738b433a476e40877a8.jpg" alt="款式 1005009905897713" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005009905897713</code>
+          <button class="copy" data-copy="1005009905897713">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="145024830">
+      <div class="media" data-len="1" data-cur="0">
+        <span class="no">23</span>
+        <img src="https://image7.coupangcdn.com/image/vendor_inventory/images/2018/10/16/9/8/43b22663-f2c3-47a7-bd32-15f738461c37.jpg" alt="款式 145024830" referrerpolicy="no-referrer" loading="lazy">
+        
+        <div class="dots"><i class="on"></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">145024830</code>
+          <button class="copy" data-copy="145024830">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005009846672160">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">24</span>
+        <img src="https://ae01.alicdn.com/kf/Sf2e110f18d9742078f734c38ba90a990e.jpg" alt="款式 1005009846672160" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005009846672160</code>
+          <button class="copy" data-copy="1005009846672160">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005008024802063">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">25</span>
+        <img src="https://ae01.alicdn.com/kf/S8f7f8af8217147d8875acaf425686ac0O.jpg" alt="款式 1005008024802063" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005008024802063</code>
+          <button class="copy" data-copy="1005008024802063">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="9758097705">
+      <div class="media" data-len="2" data-cur="0">
+        <span class="no">26</span>
+        <img src="https://image.coupangcdn.com/image/vendor_inventory/7dd5/4d5822361824b727fbdf18478749ca9c6c28de74725cecfebaa0d01d2e45.jpg" alt="款式 9758097705" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">9758097705</code>
+          <button class="copy" data-copy="9758097705">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005011927616398">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">27</span>
+        <img src="https://ae01.alicdn.com/kf/S9908dbfa8630415781e8ef592fb6c80cO.jpg" alt="款式 1005011927616398" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005011927616398</code>
+          <button class="copy" data-copy="1005011927616398">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005012609195576">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">28</span>
+        <img src="https://ae01.alicdn.com/kf/S6cd934fe902a434c8cf2bd6bf7e44e1at.jpg" alt="款式 1005012609195576" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005012609195576</code>
+          <button class="copy" data-copy="1005012609195576">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="B008KWXSPE">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">29</span>
+        <img src="https://m.media-amazon.com/images/I/31djb86C4eL._AC_.jpg" alt="款式 B008KWXSPE" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">B008KWXSPE</code>
+          <button class="copy" data-copy="B008KWXSPE">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005010099043294">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">30</span>
+        <img src="https://ae01.alicdn.com/kf/S02c3d165d6bd4ea094d6d6157356f6dd8.jpg" alt="款式 1005010099043294" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005010099043294</code>
+          <button class="copy" data-copy="1005010099043294">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="m2607211201093033">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">31</span>
+        <img src="https://img.ltwebstatic.com/v4/j/smartflow/2026/08/14/72/1786672072bd6ec1bcd2c18daa9545029a7aa4b20b_thumbnail_900x.webp" alt="款式 m2607211201093033" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">m2607211201093033</code>
+          <button class="copy" data-copy="m2607211201093033">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005006901035100">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">32</span>
+        <img src="https://ae01.alicdn.com/kf/S2c80b5b864e546369f8b6f76a733eff1P.jpg" alt="款式 1005006901035100" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005006901035100</code>
+          <button class="copy" data-copy="1005006901035100">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005009393219430">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">33</span>
+        <img src="https://ae01.alicdn.com/kf/Saf39d942e2484f2885705cc3caf32c58N.jpg" alt="款式 1005009393219430" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005009393219430</code>
+          <button class="copy" data-copy="1005009393219430">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005010608847428">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">34</span>
+        <img src="https://ae01.alicdn.com/kf/S7bd78cb67fff459690be0cf41864b89fs.jpg" alt="款式 1005010608847428" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005010608847428</code>
+          <button class="copy" data-copy="1005010608847428">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005013002583595">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">35</span>
+        <img src="https://ae-pic-a1.aliexpress-media.com/kf/Safa256def6924abe89b6d9d0c799d622j.jpg" alt="款式 1005013002583595" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005013002583595</code>
+          <button class="copy" data-copy="1005013002583595">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005013005286666">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">36</span>
+        <img src="https://ae-pic-a1.aliexpress-media.com/kf/S49e521a91c684de6a552ae59145f212dY.jpg" alt="款式 1005013005286666" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005013005286666</code>
+          <button class="copy" data-copy="1005013005286666">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005010430125173">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">37</span>
+        <img src="https://ae01.alicdn.com/kf/Sf3cd5769f76f4bdb9a4bee20a1e3dbf2I.jpg" alt="款式 1005010430125173" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005010430125173</code>
+          <button class="copy" data-copy="1005010430125173">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005009448330293">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">38</span>
+        <img src="https://ae01.alicdn.com/kf/S3d8c8ce8c5ea4ae6a70316745f8c9a8fh.jpg" alt="款式 1005009448330293" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005009448330293</code>
+          <button class="copy" data-copy="1005009448330293">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005005956919811">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">39</span>
+        <img src="https://ae01.alicdn.com/kf/S432435fe68cd45beac94891e76035164j.jpg" alt="款式 1005005956919811" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005005956919811</code>
+          <button class="copy" data-copy="1005005956919811">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005010030230190">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">40</span>
+        <img src="https://ae01.alicdn.com/kf/S2e9ac3ea5cdd40b294be89730c7cc0f2p.jpg" alt="款式 1005010030230190" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005010030230190</code>
+          <button class="copy" data-copy="1005010030230190">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005008024717746">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">41</span>
+        <img src="https://ae01.alicdn.com/kf/S7724f24482d34880a8635ea2b2b8e030i.jpg" alt="款式 1005008024717746" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005008024717746</code>
+          <button class="copy" data-copy="1005008024717746">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="z23091309524">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">42</span>
+        <img src="https://img.ltwebstatic.com/images3_pi/2023/12/09/90/17021264892d94af1b8bac65e81261b81aede41528_thumbnail_750x999.webp" alt="款式 z23091309524" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">z23091309524</code>
+          <button class="copy" data-copy="z23091309524">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005008822207111">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">43</span>
+        <img src="https://ae01.alicdn.com/kf/S6935d61390a04db384f20fd9e30066dbK.jpg" alt="款式 1005008822207111" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005008822207111</code>
+          <button class="copy" data-copy="1005008822207111">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005010318161220">
+      <div class="media" data-len="2" data-cur="0">
+        <span class="no">44</span>
+        <img src="https://ae01.alicdn.com/kf/S47c758ec3a7d4e668635a3e4f8248658X.jpg" alt="款式 1005010318161220" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005010318161220</code>
+          <button class="copy" data-copy="1005010318161220">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="m2605270927449117">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">45</span>
+        <img src="https://img.ltwebstatic.com/v4/j/pi/2026/06/22/58/1782099682dca7fdb71147bb883e312ba11d34c3ff_thumbnail_750x999.webp" alt="款式 m2605270927449117" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">m2605270927449117</code>
+          <button class="copy" data-copy="m2605270927449117">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="32979649561">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">46</span>
+        <img src="https://ae01.alicdn.com/kf/HTB11JP_JVzqK1RjSZFCq6zbxVXaT.jpg" alt="款式 32979649561" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">32979649561</code>
+          <button class="copy" data-copy="32979649561">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005008230322340">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">47</span>
+        <img src="https://ae01.alicdn.com/kf/S4e17e9c937e448a7b0a6e046fdcd1d94c.jpg" alt="款式 1005008230322340" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005008230322340</code>
+          <button class="copy" data-copy="1005008230322340">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005011576462828">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">48</span>
+        <img src="https://ae-pic-a1.aliexpress-media.com/kf/Sa73f92f6de4c4bc98fc687db1dda51edw.jpg" alt="款式 1005011576462828" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005011576462828</code>
+          <button class="copy" data-copy="1005011576462828">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005008177744875">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">49</span>
+        <img src="https://ae01.alicdn.com/kf/S9aeae3c5c89a48a09c0487f8e1fec834g.jpg_960x960.jpg_.webp" alt="款式 1005008177744875" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005008177744875</code>
+          <button class="copy" data-copy="1005008177744875">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="1005009011963657">
+      <div class="media" data-len="3" data-cur="0">
+        <span class="no">50</span>
+        <img src="https://ae01.alicdn.com/kf/Aa49c49d5cfb24fe4b5d27c20243eedf8w.jpg" alt="款式 1005009011963657" referrerpolicy="no-referrer" loading="lazy">
+        <button class="ar l" aria-label="上一张">‹</button><button class="ar r" aria-label="下一张">›</button>
+        <div class="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+      </div>
+      <div class="body">
+        <div class="idrow">
+          <span class="lbl">款式编号</span>
+          <code class="idv">1005009011963657</code>
+          <button class="copy" data-copy="1005009011963657">复制</button>
+        </div>
+        <p class="hint">类似款式复制款式编号给【麦杞岐】</p>
+        <div class="paths">
+          <div class="prow">
+            <span class="tag">路径 A</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套">服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇夹克和外套" title="复制类目路径 A">⧉</button>
+          </div>
+          <div class="prow">
+            <span class="tag">路径 B</span>
+            <p class="ptext" title="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克">服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克</p>
+            <button class="pcopy" data-copy="服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男士外套 &gt; 男士轻型夹克 &gt; 男士棉质轻型夹克" title="复制类目路径 B">⧉</button>
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn search"><span>搜索同款</span><b>⌕</b></button>
+          <div class="menu">
+            <a data-eng="lens" href="#">Google Lens</a>
+            <a data-eng="baidu" href="#">百度识图</a>
+            <a data-eng="yandex" href="#">Yandex Images</a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</main>
+
+<footer>
+  <div class="disc">
+    <h3>网 页 声 明</h3>
+    <p>1. 本页面仅作为款式参考与选款素材整理，不销售任何商品，不构成任何形式的要约或交易。</p>
+    <p>2. 页面内图片、款式及资料均来源于公开渠道，版权归原权利人所有；如权利人认为存在侵权，请联系删除。</p>
+    <p>3. 请勿将本页素材直接用于上架、复制或二次传播。任何使用本页内容所产生的侵权、纠纷及损失，由使用者自行承担，本人不承担任何法律责任。</p>
+  </div>
+</footer>
+
+<div class="lb" id="lb">
+  <button class="x" id="lbx">✕</button>
+  <button class="nav prev" id="lbp">‹</button>
+  <img id="lbimg" src="" alt="">
+  <button class="nav next" id="lbn">›</button>
+  <div class="cap" id="lbcap"></div>
+</div>
+
+<div class="toast" id="toast">已复制</div>
+
+<script>
+const DATA = [{"id": "m250808210092", "imgs": ["https://img.ltwebstatic.com/v4/j/pi/2026/08/10/e3/178632985520f0eb1bc4b973859e0015262be7d4a4_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/pi/2026/07/10/5e/178366195362b21aeea0aeb4d6d9eb11cd754f9b1a_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/pi/2026/07/10/d7/1783661956fc40a578a3021198f94f56780a73732a_thumbnail_750x999.webp"]}, {"id": "m2603131659895450", "imgs": ["https://img.ltwebstatic.com/v4/j/pi/2026/07/13/34/1783914437e3787e1b0cb68925eabb30eb826f5c1e_thumbnail_900x.webp", "https://img.ltwebstatic.com/v4/j/pi/2026/07/13/d1/178391443836b5a12b8c06fcc39ac2c2cae13ae7c1_thumbnail_900x.webp", "https://img.ltwebstatic.com/v4/j/pi/2026/07/13/fb/17839144409ba8989d03d0244c292a3a532ffbf7c6_thumbnail_900x.webp"]}, {"id": "m250522480660", "imgs": ["https://img.ltwebstatic.com/v4/j/smartflow/2026/09/15/ff/17894353778a88c20c0da7feb92287e15097a63bcc_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/smartflow/2026/09/15/24/17894353779e7ed106a979011c4a6f4ac315518893_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/smartflow/2026/09/15/2b/17894353774004083493cb61aa0179980e633aa6d3_thumbnail_750x999.webp"]}, {"id": "m2607241446008673", "imgs": ["https://img.ltwebstatic.com/v4/j/smartflow/2026/09/09/06/1788939205332dc49f8053a6f7519edbde864c2586_thumbnail_900x.webp", "https://img.ltwebstatic.com/v4/j/smartflow/2026/09/09/46/17889392058cf0e3ec9f8e3cbd78e8e0b41da22e47_thumbnail_900x.webp", "https://img.ltwebstatic.com/v4/j/smartflow/2026/09/09/52/1788939205b0f830d83138e8ba3991cce23052a8d7_thumbnail_900x.webp"]}, {"id": "m2608251400077986", "imgs": ["https://img.ltwebstatic.com/v4/j/dps/PS202610100424/7d2f19ba877408cc9c3e7f07316357b10447d6751cd9a9496e5974724f578a8b_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/dps/PS202610100424/4526cd16717d8ccd94efb465f69e41ef66562839758eb3ef753d6f5fc69d05dd_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/dps/PS202610100424/4495ef75b1e8d02d06b026f767c63ccbfc0d382525ecdfd068bdd9d79acaae6c_thumbnail_750x999.webp"]}, {"id": "m2607211415320760", "imgs": ["https://img.ltwebstatic.com/v4/j/smartflow/2026/08/25/d0/17876392502aaa137f53ecd35347dd7dadf4e97b78_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/smartflow/2026/08/25/10/1787639250f7e87a033a8f3306c9d8a2769252dd20_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/smartflow/2026/08/25/5a/1787639250db5127bd5ce19dd3b26f1bfb2218aec9_thumbnail_750x999.webp"]}, {"id": "m2608071318957847", "imgs": ["https://img.ltwebstatic.com/v4/j/smartflow/2026/09/04/b6/17885168263bfd86cb3bd12ed28cbe0ca9e1c3a02f_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/smartflow/2026/09/04/67/178851682608e1f52eb9e0143d2d2b4063a80c720d_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/smartflow/2026/09/04/a8/178851682607444d9ed922701da94f9f195677d70f_thumbnail_750x999.webp"]}, {"id": "m250805386616", "imgs": ["https://img.ltwebstatic.com/v4/j/dps/PS2026092214864/04a9b320a2990cd104d9b1d09f1b943ab4a1a9f8300c6c57e7333446eb8fdc83_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/dps/PS2026092214864/a9199d03700d0d20413bd3eeaba76bfde8f0ece09f3f4cbb8e800b372f849539_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/dps/PS2026092214864/4d3c488fd6de0f606d08839d205e9b6d45024616a5c607b2b946e1a1d3e53eae_thumbnail_750x999.webp"]}, {"id": "m2608061528278501", "imgs": ["https://img.ltwebstatic.com/v4/j/dps/PS202609235029/2269a1f3ece28ced04fcf20bebe55997d65b8fda33fb6495726893e29e1ecb00_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/dps/PS202609235029/81c0106a19405309afdc78825da9408eb3efdd4fdaa11328b28f6d566cb7f77a_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/dps/PS202609235029/dd691a8e5c32c403170b13ee56467471ae11f588b762c20703ff16010cd863b0_thumbnail_750x999.webp"]}, {"id": "m2606291944482218", "imgs": ["https://img.ltwebstatic.com/v4/j/pi/2026/07/27/6c/17851342521cd703cb1327da078910c5e8aa7db95d_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/pi/2026/07/27/c3/1785134253614d117d5df47429c0d5cbc06981b519_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/pi/2026/07/27/66/178513425502c3e96723c6ade702e1eb1dbe35b6f5_thumbnail_750x999.webp"]}, {"id": "m2607021534321115", "imgs": ["https://img.ltwebstatic.com/v4/j/pi/2026/07/23/cf/17847717458d697389b5935d5bf901df5b7cea9bd0_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/pi/2026/07/23/6a/1784771747d9c035c03c59d1b33d284348532c7884_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/pi/2026/07/23/69/1784771749ffe504b4c4acee1eac03290627d76088_thumbnail_750x999.webp"]}, {"id": "m2607100954299826", "imgs": ["https://img.ltwebstatic.com/v4/j/dps/PS202608311562/ce2b04ce0f77b0c9efa50c34c6cdc14d6fe190535556cf670298dcd05ebb7b4d_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/dps/PS202608311562/a40630bcf37b1cc851a31a27f743b7f54a6d532482af4db5a1926792115fa3d6_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/dps/PS202608311562/91caec647584a0ece3203d90a2cebee7a50f52d2c046ef3d391f069690571d22_thumbnail_750x999.webp"]}, {"id": "m250527774654", "imgs": ["https://img.ltwebstatic.com/v4/j/pi/2026/06/11/f9/17811487050f57c934dede535c9b51dd98aa1fd35d_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/pi/2026/06/11/bb/178114870772b28efc7f86b07402b6954cb4f62932_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/pi/2026/06/11/ec/178114870981c9a4098c6339ea71c32d3bb59411a9_thumbnail_750x999.webp"]}, {"id": "m24062905502", "imgs": ["https://img.ltwebstatic.com/images3_spmp/2024/07/22/d8/1721634142ef3e8465a6aef54001e5b12106b3ccae_thumbnail_900x.webp", "https://img.ltwebstatic.com/images3_spmp/2024/07/22/d8/1721634142f8ed02a7b475ef1e40115edadf43dbc0_thumbnail_900x.webp", "https://img.ltwebstatic.com/images3_spmp/2024/07/22/f2/1721634147890c238453ba0429bbd0c2a3e87ae270_thumbnail_900x.webp"]}, {"id": "m2510232992162", "imgs": ["https://img.ltwebstatic.com/v4/j/pi/2025/12/10/8a/17653371799faa6db5325833fc7adeb5e24a363c23_thumbnail_900x.webp", "https://img.ltwebstatic.com/v4/j/pi/2025/12/10/8e/176533718135be2702c666e2f2d4c8619564f101e8_thumbnail_900x.webp", "https://img.ltwebstatic.com/v4/j/pi/2025/12/10/25/176533718244c7a961a0de65383dcdcde5f45f09b3_thumbnail_900x.webp"]}, {"id": "m2606081104436326", "imgs": ["https://img.ltwebstatic.com/v4/j/pi/2026/06/29/f1/17826974027ab9c6d671d98a351a93d69347281e39_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/pi/2026/06/29/24/1782697403e504ad1e0beff6d278fd778cfbc48f67_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/pi/2026/06/29/d6/1782697406728a8d42e7d2c53c75b4f84d2ba99ba7_thumbnail_750x999.webp"]}, {"id": "m250522699183", "imgs": ["https://img.ltwebstatic.com/v4/j/dps/PS2026081810283/aaf67fe3123a1deda09e3be487190ab277d3621144139987cafb5f93e1ff341b_thumbnail_900x.webp", "https://img.ltwebstatic.com/v4/j/dps/PS2026081810283/67fb51e64fba73370a37784af46734e62204930e45ca293f2a3cfea0fe0ca7a2_thumbnail_900x.webp", "https://img.ltwebstatic.com/v4/j/dps/PS2026081810283/14e5143d1e8a7790f9f1e284efb8009e130e72425a94a8205f4ff11d9078f2a9_thumbnail_900x.webp"]}, {"id": "1005007601067027", "imgs": ["https://ae01.alicdn.com/kf/Sef8b6d9b05124337befab1e0d8718242J.jpg", "https://ae01.alicdn.com/kf/S462c3581de2346bb81b18abb6987fa42n.jpg", "https://ae01.alicdn.com/kf/S2833f29861e449d4b7f5542aea46ee4eY.jpg"]}, {"id": "m2610041623243884", "imgs": ["https://img.ltwebstatic.com/v4/j/dps/PS202610042253/938209509c2fdc11f3c4ca60b0b2a438bfad938d513dc570fb8d0d310d47b3fe_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/dps/PS202610042253/acd9623e9d996c89ad53dcaba1b484f4afe81575faff6b288d93226ef605e2e0_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/dps/PS202610042253/33731d279a47bdcbef787731d6d3007c932520a85db4d9d161a9f43aeb11d1b2_thumbnail_750x999.webp"]}, {"id": "z2610041841921244", "imgs": ["https://img.ltwebstatic.com/v4/j/dps/PS202609169605/f22393d9e1e9a105ea7bd310108a1cc1f0a7c1decfd5f9dfa358027bb25c1793_thumbnail_900x.webp", "https://img.ltwebstatic.com/v4/j/dps/PS202609169605/422ebe5649a9bf5f4d2919f4ff171bc18439a9cb33f79769e21ea625fee21d06_thumbnail_900x.webp", "https://img.ltwebstatic.com/v4/j/dps/PS202609169605/35141772a81f4d620caec587c609df42246646026582274aa55113a9fa1b2cbc_thumbnail_900x.webp"]}, {"id": "1005009508797803", "imgs": ["https://ae01.alicdn.com/kf/Sf53b2ddad7094a8c9bd643ea8ca442136.jpg", "https://ae01.alicdn.com/kf/S3be21315acfd46c8a5cde53276428970n.jpg", "https://ae01.alicdn.com/kf/Sb78f7ecf399a4248b86fc8941effa5abG.jpg"]}, {"id": "1005009905897713", "imgs": ["https://ae01.alicdn.com/kf/S6dd829192d0b41738b433a476e40877a8.jpg", "https://ae01.alicdn.com/kf/S4de58208ade44110a8bb742cfcf32ba2p.jpg", "https://ae01.alicdn.com/kf/Se9b3d8ef5cba4e41b6a16d323b2ce88du.jpg"]}, {"id": "145024830", "imgs": ["https://image7.coupangcdn.com/image/vendor_inventory/images/2018/10/16/9/8/43b22663-f2c3-47a7-bd32-15f738461c37.jpg"]}, {"id": "1005009846672160", "imgs": ["https://ae01.alicdn.com/kf/Sf2e110f18d9742078f734c38ba90a990e.jpg", "https://ae01.alicdn.com/kf/S02664214100e496dac38d4435ae7ceae8.jpg", "https://ae01.alicdn.com/kf/Scc86060106f54ea48f2ca56da1267f69q.jpg"]}, {"id": "1005008024802063", "imgs": ["https://ae01.alicdn.com/kf/S8f7f8af8217147d8875acaf425686ac0O.jpg", "https://ae01.alicdn.com/kf/S58641b8c9fa74ddfbd5fad1365ef6993J.jpg", "https://ae01.alicdn.com/kf/S642de51a587e412799105e19d8f7c8a4c.jpg"]}, {"id": "9758097705", "imgs": ["https://image.coupangcdn.com/image/vendor_inventory/7dd5/4d5822361824b727fbdf18478749ca9c6c28de74725cecfebaa0d01d2e45.jpg", "https://image.coupangcdn.com/image/vendor_inventory/d487/784836e8805fa565972d581929c50d100d52ade137fef8ac33e2cdde39af.jpg"]}, {"id": "1005011927616398", "imgs": ["https://ae01.alicdn.com/kf/S9908dbfa8630415781e8ef592fb6c80cO.jpg", "https://ae01.alicdn.com/kf/Seaa20c88020d487ca86971bb39d11a28w.jpg", "https://ae01.alicdn.com/kf/S75fd38d5e1df49d189788189dabd7bb9W.jpg"]}, {"id": "1005012609195576", "imgs": ["https://ae01.alicdn.com/kf/S6cd934fe902a434c8cf2bd6bf7e44e1at.jpg", "https://ae01.alicdn.com/kf/S973685078db3495aa63a306e9970b72cA.jpg", "https://ae01.alicdn.com/kf/S868615f816ea48138f6c9a44703159b46.jpg"]}, {"id": "B008KWXSPE", "imgs": ["https://m.media-amazon.com/images/I/31djb86C4eL._AC_.jpg", "https://m.media-amazon.com/images/I/51AhGFAIE9L._AC_.jpg", "https://m.media-amazon.com/images/I/41emKivQ1GL._AC_.jpg"]}, {"id": "1005010099043294", "imgs": ["https://ae01.alicdn.com/kf/S02c3d165d6bd4ea094d6d6157356f6dd8.jpg", "https://ae01.alicdn.com/kf/S3ccfc2e1071c4c52a722ca2b1b08cbb03.jpg", "https://ae01.alicdn.com/kf/S25d7bc255dd443afb068f472956e4c01o.jpg"]}, {"id": "m2607211201093033", "imgs": ["https://img.ltwebstatic.com/v4/j/smartflow/2026/08/14/72/1786672072bd6ec1bcd2c18daa9545029a7aa4b20b_thumbnail_900x.webp", "https://img.ltwebstatic.com/v4/j/smartflow/2026/08/14/e8/17866720724db22da06ae640f2e5c12221807791b2_thumbnail_900x.webp", "https://img.ltwebstatic.com/v4/j/smartflow/2026/08/14/bf/1786672072ccbdb656393e61dc9a835b011a25516e_thumbnail_900x.webp"]}, {"id": "1005006901035100", "imgs": ["https://ae01.alicdn.com/kf/S2c80b5b864e546369f8b6f76a733eff1P.jpg", "https://ae01.alicdn.com/kf/S6a14a170a90d46e7acc3e00bc16c79a4N.jpg", "https://ae01.alicdn.com/kf/S42811ad57a4c4672935000929e10924bn.jpg"]}, {"id": "1005009393219430", "imgs": ["https://ae01.alicdn.com/kf/Saf39d942e2484f2885705cc3caf32c58N.jpg", "https://ae01.alicdn.com/kf/Sdf84b5f2f6d948d2b7e628a248e3f616t.jpg", "https://ae01.alicdn.com/kf/S8cf6b3de1b4748bdaa6eaf20ae435b678.jpg"]}, {"id": "1005010608847428", "imgs": ["https://ae01.alicdn.com/kf/S7bd78cb67fff459690be0cf41864b89fs.jpg", "https://ae01.alicdn.com/kf/S6cab39d0b7304f8cbd13d54fc3737302g.jpg", "https://ae01.alicdn.com/kf/S54046fd295214c02b723688e2efa4df5Y.jpg"]}, {"id": "1005013002583595", "imgs": ["https://ae-pic-a1.aliexpress-media.com/kf/Safa256def6924abe89b6d9d0c799d622j.jpg", "https://ae-pic-a1.aliexpress-media.com/kf/S5e0987ae9d194d73ba6a729839d988d7w.jpg", "https://ae-pic-a1.aliexpress-media.com/kf/Sca9148ebe9e7487096a9a77398a35c16H.jpg"]}, {"id": "1005013005286666", "imgs": ["https://ae-pic-a1.aliexpress-media.com/kf/S49e521a91c684de6a552ae59145f212dY.jpg", "https://ae-pic-a1.aliexpress-media.com/kf/See7ee2704ecf4cd7945ed6d7a890df28D.jpg", "https://ae-pic-a1.aliexpress-media.com/kf/S5bd3b2aa667a4e9c909f03164269c4426.jpg"]}, {"id": "1005010430125173", "imgs": ["https://ae01.alicdn.com/kf/Sf3cd5769f76f4bdb9a4bee20a1e3dbf2I.jpg", "https://ae01.alicdn.com/kf/S207748d542a141a084f92acc0edcd8a1E.jpg", "https://ae01.alicdn.com/kf/S80cecc1bba2f44ac80dc594d14f61f1af.jpg"]}, {"id": "1005009448330293", "imgs": ["https://ae01.alicdn.com/kf/S3d8c8ce8c5ea4ae6a70316745f8c9a8fh.jpg", "https://ae01.alicdn.com/kf/S7dc9f96505ce4260bd3c63f723900534F.jpg", "https://ae01.alicdn.com/kf/See7b0390a6794f429ad8bbd22b423edc0.jpg"]}, {"id": "1005005956919811", "imgs": ["https://ae01.alicdn.com/kf/S432435fe68cd45beac94891e76035164j.jpg", "https://ae01.alicdn.com/kf/S5e7aec0681284c869f9dc1b7f5f436cey.jpg", "https://ae01.alicdn.com/kf/Sc67e579e30cf4930852fa5fc67cbc8b7w.jpg"]}, {"id": "1005010030230190", "imgs": ["https://ae01.alicdn.com/kf/S2e9ac3ea5cdd40b294be89730c7cc0f2p.jpg", "https://ae01.alicdn.com/kf/Se81d559e6c1049b89e52700bbb914a0bX.jpg", "https://ae01.alicdn.com/kf/Sa9ecd58dde9b4da9a221679d48bb4d901.jpg"]}, {"id": "1005008024717746", "imgs": ["https://ae01.alicdn.com/kf/S7724f24482d34880a8635ea2b2b8e030i.jpg", "https://ae01.alicdn.com/kf/S2b573eaf0cb645818bdb862d095e4479K.jpg", "https://ae01.alicdn.com/kf/Scd0ce7095a0b4061b912c40f64c9f0298.jpg"]}, {"id": "z23091309524", "imgs": ["https://img.ltwebstatic.com/images3_pi/2023/12/09/90/17021264892d94af1b8bac65e81261b81aede41528_thumbnail_750x999.webp", "https://img.ltwebstatic.com/images3_pi/2023/11/27/ad/1701062173e65d52a3da2f696292066fa3989ec010_thumbnail_750x999.webp", "https://img.ltwebstatic.com/images3_pi/2023/11/27/87/170106217718d35bf7c2af98f69b2aeb8daf743478_thumbnail_750x999.webp"]}, {"id": "1005008822207111", "imgs": ["https://ae01.alicdn.com/kf/S6935d61390a04db384f20fd9e30066dbK.jpg", "https://ae01.alicdn.com/kf/S75478c112d144f99bff0912bef53b4601.jpg", "https://ae01.alicdn.com/kf/S4f95652554d44673a6b523f5b5563365Q.jpg"]}, {"id": "1005010318161220", "imgs": ["https://ae01.alicdn.com/kf/S47c758ec3a7d4e668635a3e4f8248658X.jpg", "https://ae01.alicdn.com/kf/S2bebedb4badd45e19ba5dff319ce997cZ.jpg"]}, {"id": "m2605270927449117", "imgs": ["https://img.ltwebstatic.com/v4/j/pi/2026/06/22/58/1782099682dca7fdb71147bb883e312ba11d34c3ff_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/pi/2026/06/22/ad/17820996843b947e120846df1b0568c9de8064618a_thumbnail_750x999.webp", "https://img.ltwebstatic.com/v4/j/pi/2026/06/22/25/17820996865df592923d17ef7ed5b34253f099fc6e_thumbnail_750x999.webp"]}, {"id": "32979649561", "imgs": ["https://ae01.alicdn.com/kf/HTB11JP_JVzqK1RjSZFCq6zbxVXaT.jpg", "https://ae01.alicdn.com/kf/HTB137MaJ3HqK1RjSZJnq6zNLpXay.jpg", "https://ae01.alicdn.com/kf/HTB1OJD.J6TpK1RjSZKPq6y3UpXat.jpg"]}, {"id": "1005008230322340", "imgs": ["https://ae01.alicdn.com/kf/S4e17e9c937e448a7b0a6e046fdcd1d94c.jpg", "https://ae01.alicdn.com/kf/S974a0c0e84bd40b8ad6b3ac62edb97650.jpg", "https://ae01.alicdn.com/kf/Sbe21adf1d62b4863b9a487f4fdf8605d3.jpg"]}, {"id": "1005011576462828", "imgs": ["https://ae-pic-a1.aliexpress-media.com/kf/Sa73f92f6de4c4bc98fc687db1dda51edw.jpg", "https://ae-pic-a1.aliexpress-media.com/kf/S440a1107db45444a938ea57caf6259a8K.jpg", "https://ae-pic-a1.aliexpress-media.com/kf/S1a574d390d384051ac44a3c988e7725fG.jpg"]}, {"id": "1005008177744875", "imgs": ["https://ae01.alicdn.com/kf/S9aeae3c5c89a48a09c0487f8e1fec834g.jpg_960x960.jpg_.webp", "https://ae01.alicdn.com/kf/S8965f5db49474cb7b6aa8f4f0d64b243p.jpg_960x960.jpg_.webp", "https://ae01.alicdn.com/kf/S1ef81adff1a04052abc2caa07d7b3207e.jpg_960x960.jpg_.webp"]}, {"id": "1005009011963657", "imgs": ["https://ae01.alicdn.com/kf/Aa49c49d5cfb24fe4b5d27c20243eedf8w.jpg", "https://ae01.alicdn.com/kf/A0382a0bba45d4562a38b030a91e1d0c8N.jpg", "https://ae01.alicdn.com/kf/Ab971f2a2a2704594b49e4d6d44c093a1w.jpg"]}];
+
+/* ---------- copy ---------- */
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('on');
+  clearTimeout(window.__tt);
+  window.__tt = setTimeout(()=>t.classList.remove('on'), 1500);
+}
+function copyText(str){
+  const done = ()=>toast('已复制');
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(str).then(done).catch(()=>fallback(str,done));
+  } else { fallback(str, done); }
+}
+function fallback(str, done){
+  const ta = document.createElement('textarea');
+  ta.value = str;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try{ document.execCommand('copy'); done(); }catch(e){ toast('复制失败，请长按选择'); }
+  document.body.removeChild(ta);
+}
+document.addEventListener('click', e=>{
+  const b = e.target.closest('[data-copy]');
+  if(b){
+    copyText(b.dataset.copy);
+    if(b.classList.contains('copy')){
+      b.classList.add('ok'); const o=b.textContent; b.textContent='已复制';
+      setTimeout(()=>{b.classList.remove('ok'); b.textContent=o;}, 1300);
+    }
+    return;
+  }
+});
+
+/* ---------- carousel ---------- */
+function render(media, cur){
+  const card = media.closest('.card');
+  const id = card.dataset.id;
+  const item = DATA.find(d=>d.id===id);
+  media.dataset.cur = cur;
+  media.querySelector('img').src = item.imgs[cur];
+  media.querySelectorAll('.dots i').forEach((d,k)=>d.classList.toggle('on', k===cur));
+}
+document.getElementById('grid').addEventListener('click', e=>{
+  const ar = e.target.closest('.ar');
+  const media = e.target.closest('.media');
+  if(!media) return;
+  const item = DATA.find(d=>d.id===media.closest('.card').dataset.id);
+  const len = item.imgs.length;
+  if(ar){
+    e.stopPropagation();
+    let cur = (+media.dataset.cur + (ar.classList.contains('l') ? -1 : 1) + len) % len;
+    render(media, cur);
+    return;
+  }
+  openLB(item.id, +media.dataset.cur);
+});
+
+/* ---------- lightbox ---------- */
+let lbState = null;
+function openLB(id, i){
+  const item = DATA.find(d=>d.id===id);
+  lbState = {item, i};
+  paint();
+  document.getElementById('lb').classList.add('on');
+  document.body.style.overflow='hidden';
+}
+function paint(){
+  const {item, i} = lbState;
+  document.getElementById('lbimg').src = item.imgs[i];
+  document.getElementById('lbcap').textContent = '款式编号 ' + item.id + '   ·   ' + (i+1) + ' / ' + item.imgs.length;
+  const multi = item.imgs.length > 1;
+  document.getElementById('lbp').style.display = multi ? 'grid' : 'none';
+  document.getElementById('lbn').style.display = multi ? 'grid' : 'none';
+}
+function closeLB(){
+  document.getElementById('lb').classList.remove('on');
+  document.body.style.overflow='';
+  lbState = null;
+}
+document.getElementById('lbx').onclick = closeLB;
+document.getElementById('lb').addEventListener('click', e=>{ if(e.target.id==='lb') closeLB(); });
+document.getElementById('lbp').onclick = ()=>{ if(!lbState) return; lbState.i = (lbState.i-1+lbState.item.imgs.length)%lbState.item.imgs.length; paint(); };
+document.getElementById('lbn').onclick = ()=>{ if(!lbState) return; lbState.i = (lbState.i+1)%lbState.item.imgs.length; paint(); };
+document.addEventListener('keydown', e=>{
+  if(!lbState) return;
+  if(e.key==='Escape') closeLB();
+  if(e.key==='ArrowLeft') document.getElementById('lbp').click();
+  if(e.key==='ArrowRight') document.getElementById('lbn').click();
+});
+
+/* ---------- search same style ---------- */
+const ENGINES = {
+  lens:   u=>'https://lens.google.com/uploadbyurl?url='+encodeURIComponent(u),
+  baidu:  u=>'https://graph.baidu.com/details?isfromtusoupc=1&tn=pc&carousel=0&image='+encodeURIComponent(u),
+  yandex: u=>'https://yandex.com/images/search?rpt=imageview&url='+encodeURIComponent(u)
+};
+document.addEventListener('click', e=>{
+  const sb = e.target.closest('.search');
+  const link = e.target.closest('.menu a');
+  document.querySelectorAll('.menu').forEach(m=>{ if(!sb || m!==sb.parentElement.querySelector('.menu')) m.classList.remove('show'); });
+  if(sb){
+    const menu = sb.parentElement.querySelector('.menu');
+    const card = sb.closest('.card');
+    const media = card.querySelector('.media');
+    const item = DATA.find(d=>d.id===card.dataset.id);
+    const url = item.imgs[+media.dataset.cur];
+    menu.querySelectorAll('a').forEach(a=>{ a.href = ENGINES[a.dataset.eng](url); a.target='_blank'; a.rel='noopener'; });
+    menu.classList.toggle('show');
+    return;
+  }
+  if(link){ link.parentElement.classList.remove('show'); }
+});
+
+/* ---------- filter ---------- */
+const q = document.getElementById('q');
+q.addEventListener('input', ()=>{
+  const v = q.value.trim().toLowerCase();
+  let n = 0;
+  document.querySelectorAll('.card').forEach(c=>{
+    const hit = !v || c.dataset.id.toLowerCase().includes(v);
+    c.style.display = hit ? '' : 'none';
+    if(hit) n++;
+  });
+  document.getElementById('cnt').textContent = n;
+});
+document.getElementById('cnt').textContent = document.querySelectorAll('.card').length;
+
+/* ---------- reveal ---------- */
+const io = new IntersectionObserver(es=>{
+  es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+},{rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.card').forEach((c,i)=>{
+  c.style.transitionDelay = (i%8)*40 + 'ms';
+  io.observe(c);
+});
+setTimeout(()=>document.querySelectorAll('.card').forEach(c=>c.classList.add('in')), 1800);
+
+/* ---------- image fail ---------- */
+document.addEventListener('error', e=>{
+  const img = e.target;
+  if(img.tagName==='IMG' && !img.dataset.failed){
+    img.dataset.failed = 1;
+    img.style.display='none';
+    const p = document.createElement('div');
+    p.style.cssText='width:100%;height:100%;display:grid;place-items:center;color:#9a9486;font-size:12px;letter-spacing:.1em;background:#efeadd';
+    p.textContent='图片加载失败（需联网）';
+    img.parentElement.insertBefore(p, img);
+  }
+}, true);
+</script>
+</body>
+</html>
